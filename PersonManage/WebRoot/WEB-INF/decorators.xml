@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<decorators defaultdir="/decorators">
+    <decorator name="ManMain" page="ManMain.jsp">
+       <pattern>/manage/*</pattern>
+       <pattern>/*.action</pattern>
+    </decorator>
+</decorators>

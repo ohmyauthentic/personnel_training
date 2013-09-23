@@ -1,0 +1,278 @@
+@CHARSET "UTF-8";
+body{
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;
+	background: #fff url(../images/login_bg.jpg) repeat top left;
+	font-weight: 400;
+	
+	color: #1d3c41;
+	
+	background-attachment: fixed;
+	
+	}
+	
+	.xxgl-z-rq{
+	min-height: 560px;	
+	margin: 0px auto;	
+	margin-left:400px;
+	width: 700px;
+	position: relative;	
+	background: rgb(247, 247, 247);
+	border: 1px solid rgba(147, 184, 189,0.8);
+	box-shadow: -3pt 3px 5px rgba(105, 108, 109,  0.4);
+	border-radius: 5px;
+	}
+	#chakan{
+	display:none;
+	}
+	#xiugai{
+	display:block;
+	}
+
+	#mima{
+		display:none;
+	}
+	#keyan{
+	display:none;
+	margin: 0px auto;	
+	margin-left:350px;
+	width: 700px;
+	position: relative;	
+	background: rgb(247, 247, 247);
+	border: 1px solid rgba(147, 184, 189,0.8);
+	box-shadow: -3pt 3px 5px rgba(105, 108, 109,  0.4);
+	border-radius: 5px;
+	}
+	#keyan td{
+	box-shadow: 0pt 1px 1px rgba(105, 108, 109,  0.7),	0px 0px 1px 1px rgba(208, 223, 226, 0.4) inset;
+	}
+	form {
+	  margin: 20px 0 18px;
+	}
+	fieldset {
+	  padding: 0;
+	  margin: 0;
+	  border: 0;
+	}
+	label,
+	input,
+	button{
+	  font-size: 13px;
+	  font-weight: normal;
+	  line-height: 18px;
+	}
+	input,
+	button{
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	  outline:none;
+	}
+	label {
+	  display: block;
+	  margin-bottom: 5px;
+	  color: #333333;
+	}
+	input{
+	  display: inline-block;
+	  width: 210px;
+	  height: 18px;
+	  padding: 4px;
+	  margin-bottom: 9px;
+	  font-size: 13px;
+	  line-height: 18px;
+	  color: #555555;
+	  
+	  border: 1px solid #cccccc;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	
+	}
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+	  width: auto;
+	  height: auto;
+	}
+	input {
+		
+	  -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	  -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+	  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	  transition: border linear 0.2s, box-shadow linear 0.2s;
+	}
+	input:focus,
+	textarea:focus {
+	  
+	  -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	  -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.2) inset;
+	  outline:none;
+	  
+	  /* IE6-9 */
+	
+	}
+	input{
+	
+	  margin-left: 0;
+	}
+	input:focus:required:invalid,
+	textarea:focus:required:invalid,
+	select:focus:required:invalid {
+	  color: #b94a48;
+	  
+	}
+	input:focus:required:invalid:focus,
+	textarea:focus:required:invalid:focus,
+	select:focus:required:invalid:focus {
+	  
+	  -webkit-box-shadow: 0 0 6px #f8b9b7;
+	  -moz-box-shadow: 0 0 6px #f8b9b7;
+	  box-shadow: 0 0 6px #f8b9b7;
+	}
+	:-moz-placeholder {
+	  color: #999999;
+	}
+	::-webkit-input-placeholder {
+	  color: #999999;
+	}
+	.help-block,
+	.help-inline {
+	  color: #555555;
+	}
+	.help-block {
+	  display: block;
+	  margin-bottom: 9px;
+	}
+	.help-inline {
+	  display: inline-block;
+	  *display: inline;
+	  /* IE7 inline-block hack */
+	
+	  *zoom: 1;
+	  vertical-align: middle;
+	  padding-left: 5px;
+	}
+	.xxgl-z-rq input,
+	.xxgl-z-rq .help-inline {
+	  display: inline-block;
+	  margin-bottom: 0;
+	}
+	
+	.shuru-group {
+	  margin-bottom: 9px;
+	}
+	.xxgl-z-rq .shuru-group {
+	  margin-bottom: 18px;
+	  *zoom: 1;
+	}
+	.xxgl-z-rq .shuru-group:before,
+	.xxgl-z-rq .shuru-group:after {
+	  display: table;
+	  content: "";
+	}
+	.xxgl-z-rq .shuru-group:after {
+	  clear: both;
+	}
+	.xxgl-z-rq .shuru-label {
+	margin-left: 50px;
+	  float: left;
+	  width: 140px;
+	  padding-top: 5px;
+	  text-align: right;
+	}
+	.xxgl-z-rq .shurus{
+	  margin-left: 230px;
+	  /* Super jank IE7 fix to ensure the inputs in .input-append and input-prepend don't inherit the margin of the parent, in this case .shurus */
+	
+	  *display: inline-block;
+	  *margin-left: 0;
+	  *padding-left: 20px;
+	}
+	.xxgl-z-rq .help-block {
+	  margin-top: 9px;
+	  margin-bottom: 0;
+	}
+	.xxgl-z-rq .form-actions {
+	  padding-left: 160px;
+	}
+	/*helps info*/
+	
+	.xxgl-z-rq .help-inline {
+		position: relative;
+		padding: 3px 6px;
+		background: #444;
+		color: #fff;
+		z-index: -2;
+		border-radius: 3px;
+		-webkit-transition:all 0.5s;
+	  -moz-transition:all 0.5s;
+	  -o-transition:all 0.5s;
+	  -ms-transition:all 0.5s;
+	  transition:all 0.5s;
+	  position: relative;
+	  margin-left: -500px;
+	}	
+	.xxgl-z-rq .help-inline::before {
+		content:"";
+		display: block;
+		height: 0;
+		width: 0;
+		position: absolute;
+		top: 7px;
+		left: -12px;
+		border: 6px solid transparent;
+		border-right-color: #444;
+		z-index: 2;
+	}
+	
+	
+	
+	
+	.shurus {
+		position: relative;
+		overflow: hidden;
+	}	
+	
+	
+	
+	
+	.xxgl-z-rq .help-block {
+		background: #444;
+		border-radius: 3px;
+		padding: 3px 6px;
+		position: absolute;
+		top: 28px;
+		left: 0;
+		
+		color: #fff;
+		-webkit-transition:all 0.5s;
+	  -moz-transition:all 0.5s;
+	  -o-transition:all 0.5s;
+	  -ms-transition:all 0.5s;
+	  transition:all 0.5s;
+	}
+	.xxgl-z-rq .help-block::after {
+		border: 6px solid transparent;
+		border-bottom-color: #444;
+		content:"";
+		display: block;
+		height:0;
+		width: 0;
+		left: 5px;
+		top: -12px;
+		
+		position: absolute;
+	} 
+	
+	.xxgl-z-rq .shurus-block input:active,
+	.xxgl-z-rq .shurus-block input:focus {
+		margin-bottom: 35px;
+	}
+	.xxgl-z-rq .shurus-block input:active + .xxgl-z-rq,
+	.xxgl-z-rq .shurus-block input:focus + .xxgl-z-rq{
+	
+		margin-left:850px;
+	}

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/person_manage?useUnicode=true&amp;characterEncoding=GBK">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="hujianhong"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.autocommit">false</prop>	
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/edu/njust/PO/Manager.hbm.xml</value>
+				<value>cn/edu/njust/PO/Academy.hbm.xml</value>
+				<value>cn/edu/njust/PO/Userinfo.hbm.xml</value>
+				<value>cn/edu/njust/PO/Supuser.hbm.xml</value>
+				<value>cn/edu/njust/PO/Work.hbm.xml</value>
+				<value>cn/edu/njust/PO/Study.hbm.xml</value>
+				<value>cn/edu/njust/PO/Personinfo.hbm.xml</value>
+				<value>cn/edu/njust/PO/Subject.hbm.xml</value>
+				<value>cn/edu/njust/PO/Parttime.hbm.xml</value>
+				<value>cn/edu/njust/PO/Achieve.hbm.xml</value>
+				<value>cn/edu/njust/PO/AcPaper.hbm.xml</value>
+				<value>cn/edu/njust/PO/Major.hbm.xml</value>
+				<value>cn/edu/njust/PO/Honour.hbm.xml</value>
+				<value>cn/edu/njust/PO/Email.hbm.xml</value>
+				</list>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	    <property name="sessionFactory">
+	        <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	 
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+            <tx:method name="get*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+ 
+   <aop:config >
+     <aop:pointcut id="daoMethod" expression="execution(* cn.edu.njust.DAO.*.*(..))"/>
+     <aop:advisor pointcut-ref="daoMethod" advice-ref="txAdvice" />
+   </aop:config>   
+	
+	
+   <bean id="ManagerDAO" class="cn.edu.njust.DAO.ManagerDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="AcademyDAO" class="cn.edu.njust.DAO.AcademyDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="UserinfoDAO" class="cn.edu.njust.DAO.UserinfoDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   
+   <bean id="ManageOperate" class="cn.edu.njust.Service.ManageOperate">
+   
+   	<property name="userinfoDAO">
+   		<ref bean="UserinfoDAO" />
+   	</property>
+   	<property name="managerDAO">
+   		<ref bean="ManagerDAO" />
+   	</property>
+   	<property name="academyDAO">
+   		<ref bean="AcademyDAO" />
+   	</property>
+   	<property name="md5">
+   		<ref bean="MD5" />
+   	</property>
+   	<property name="manager">
+   		<ref bean="Manager" />
+   	</property>
+   		<property name="userinfo">
+   		<ref bean="Userinfo" />
+   	</property>  	
+   </bean>
+   
+   <bean id="Manager" class="cn.edu.njust.PO.Manager"></bean>
+   <bean id="Userinfo" class="cn.edu.njust.PO.Userinfo"></bean>
+   
+   <bean id="add" class="cn.edu.njust.Action.addManager" scope="prototype">
+	     <property name="manageOperate">
+			<ref bean="ManageOperate" />
+		 </property>
+	</bean>
+   
+   
+
+
+
+
+
+
+
+   <bean id="WorkDAO" class="cn.edu.njust.DAO.WorkDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="PersoninfoDAO" class="cn.edu.njust.DAO.PersoninfoDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="EmailDAO" class="cn.edu.njust.DAO.EmailDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="StudyDAO" class="cn.edu.njust.DAO.StudyDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="AcPaperDAO" class="cn.edu.njust.DAO.AcPaperDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="SubjectDAO" class="cn.edu.njust.DAO.SubjectDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="HonourDAO" class="cn.edu.njust.DAO.HonourDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="AchieveDAO" class="cn.edu.njust.DAO.AchieveDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="MajorDAO" class="cn.edu.njust.DAO.MajorDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="ParttimeDAO" class="cn.edu.njust.DAO.ParttimeDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   <bean id="SupuserDAO" class="cn.edu.njust.DAO.SupuserDAOImpl">
+   	<property name="sessionFactory">
+   		<ref bean="sessionFactory" />
+   	</property>
+   </bean>
+   
+   
+   <bean id="MD5" class="cn.edu.njust.encrypt.MD5"></bean>
+   <bean id="UserSession" class="cn.edu.njust.Session.UserSession"></bean>
+   
+   
+   <bean id="LoginService" class="cn.edu.njust.Service.LoginService">
+	    <property name="supuserDao">
+		     <ref bean="SupuserDAO" />
+	    </property>
+	    <property name="managerDao">
+		     <ref bean="ManagerDAO" />
+	    </property>
+	    <property name="userinfoDAO">
+		     <ref bean="UserinfoDAO" />
+	    </property>
+	    <property name="md5">
+		     <ref bean="MD5" />
+	    </property>
+	    <property name="userSession">
+		     <ref bean="UserSession" />
+	    </property>
+   </bean>
+   
+   <bean id="loginAction" class="cn.edu.njust.Action.LoginAction">
+       <property name="loginService">
+		     <ref bean="LoginService" />
+	    </property>   
+   </bean>
+   
+   <bean id="modifyPWD" class="cn.edu.njust.Service.ModifyPWD">
+	    <property name="supuserDAO">
+		     <ref bean="SupuserDAO" />
+	    </property>
+	    <property name="managerDAO">
+		     <ref bean="ManagerDAO" />
+	    </property>
+	    <property name="userinfoDAO">
+		     <ref bean="UserinfoDAO" />
+	    </property>
+	    <property name="md5">
+		     <ref bean="MD5" />
+	    </property>
+   </bean>
+   
+   <bean id="PWD" class="cn.edu.njust.Action.PWDAction">
+       <property name="modifyPWD">
+		     <ref bean="modifyPWD" />
+	    </property>   
+   </bean>
+   
+   <bean id="UserList" class="cn.edu.njust.Service.UserListImpl">
+       <property name="userinfoDAO">
+		     <ref bean="UserinfoDAO" />
+	    </property>   
+   </bean>
+   <bean id="UserListAction" class="cn.edu.njust.Action.UserListAction">
+        <property name="userList">
+		     <ref bean="UserList" />
+	    </property> 
+	    <property name="managerDAO">
+		     <ref bean="ManagerDAO" />
+	    </property>    
+   </bean>
+   <bean id="ManagerList" class="cn.edu.njust.Service.ManagerListImpl">
+       <property name="managerDAO">
+		     <ref bean="ManagerDAO" />
+	    </property>   
+   </bean>
+   <bean id="ManagerListAction" class="cn.edu.njust.Action.ManagerListAction">
+        <property name="managerList">
+		     <ref bean="ManagerList" />
+	    </property>    
+   </bean>
+   <bean id="AcademyListAction" class="cn.edu.njust.Action.AcademyList">
+        <property name="academyDAO">
+		     <ref bean="AcademyDAO" />
+	    </property>    
+   </bean>
+   <bean id="addUser" class="cn.edu.njust.Action.addUser">
+         <property name="manageOperate">
+		     <ref bean="ManageOperate" />
+	    </property>  
+	     <property name="managerDAO">
+		     <ref bean="ManagerDAO" />
+	    </property>  
+   </bean>
+  
+   
+   
+ </beans>

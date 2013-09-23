@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="struts-default.xml"></include>
+	<constant name="struts.i18n.encoding" value="GBK" /> 
+	<package name="main" extends="struts-default">
+	   <interceptors>
+	        <interceptor name="loginInterceptor" class="cn.edu.njust.interceptor.CheckInterceptor"/>	           
+	        <interceptor-stack name="Mydefault">
+	             <interceptor-ref name="defaultStack"/>
+	             <interceptor-ref name="loginInterceptor"/>
+	        </interceptor-stack>
+	   </interceptors>
+	   <default-interceptor-ref name="Mydefault"/>
+	   <global-results>
+	       <result name="login">/login.jsp</result>
+	       <result name="input">/message.jsp</result>
+	   </global-results>
+		<action name="addManager" class="add">
+		    <result name="input">/addManag.jsp</result>
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="loginAction" class="loginAction">
+			<result name="manage">/manage/index.jsp</result>
+			<result name="userinfo">/index.jsp</result>
+		</action>
+		<action name="modifyPWD" class="PWD">
+			<result name="success">/message.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	    <action name="userlist" class="UserListAction">
+	         <result name="success">/manage/mUserIndex.jsp</result>
+	         <result name="login">/login.jsp</result>
+        </action>
+         <action name="managerlist" class="ManagerListAction">
+	         <result name="success">/manage/sUserIndex.jsp</result>
+	         <result name="login">/login.jsp</result>
+        </action>
+        <action name="amaList" class="AcademyListAction">
+	         <result name="success">/manage/AddManager.jsp</result>
+        </action>
+        <action name="smaList" class="AcademyListAction">
+	         <result name="success">/manage/AddUser.jsp</result>
+        </action>
+        <action name="addUser" class="addUser">
+	         <result name="success">/success.jsp</result>
+	         <result name="login">/login.jsp</result>
+        </action>
+        
+        <action name="logoutAction" class="cn.edu.njust.Action.LogoutAction">
+	         <result name="success">/login.jsp</result>
+	         <result name="error">/error.jsp</result>
+        </action>
+        <action name="ckeAction" class="cn.edu.njust.Action.CKEditor">
+	         <result name="success">/success.jsp</result>
+        </action>
+	</package>
+</struts>    
